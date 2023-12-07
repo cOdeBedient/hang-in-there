@@ -126,7 +126,7 @@ function newRandomPoster () {
   var randomQuote = quotes[getRandomIndex(quotes)]
   var newPoster = createPoster(randomImage, randomTitle, randomQuote)
   currentPoster = newPoster
-  //posterID.innerText = currentPoster.imageURL
+  posterID.innerText = currentPoster.imageURL
   return currentPoster
   }
 console.log(newRandomPoster())
