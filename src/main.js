@@ -100,8 +100,11 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
+//var posterID = document.querySelector(".poster-img")
 
 // event listeners go here 👇
+//button.show-random.addEventListener("click",newRandomPoster)
+
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -116,3 +119,14 @@ function createPoster(imageURL, title, quote) {
     title: title, 
     quote: quote}
 }
+
+function newRandomPoster () {
+  var randomImage = images[getRandomIndex(images)]
+  var randomTitle = titles[getRandomIndex(titles)]
+  var randomQuote = quotes[getRandomIndex(quotes)]
+  var newPoster = createPoster(randomImage, randomTitle, randomQuote)
+  currentPoster = newPoster
+  posterID.innerText = currentPoster.imageURL
+  return currentPoster
+  }
+console.log(newRandomPoster())
