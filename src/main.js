@@ -1,4 +1,7 @@
 // query selector variables go here 👇
+var posterImgClass = document.querySelector(".poster-img");
+var posterTitleClass = document.querySelector(".poster-title");
+var posterQuoteClass = document.querySelector(".poster-quote");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -100,7 +103,7 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
-//var posterID = document.querySelector(".poster-img")
+
 
 // event listeners go here 👇
 //button.show-random.addEventListener("click",newRandomPoster)
@@ -126,7 +129,10 @@ function newRandomPoster () {
   var randomQuote = quotes[getRandomIndex(quotes)]
   var newPoster = createPoster(randomImage, randomTitle, randomQuote)
   currentPoster = newPoster
-  posterID.innerText = currentPoster.imageURL
+  posterImgClass.src = currentPoster.imageURL
+  posterTitleClass.innerText = currentPoster.title
+  posterQuoteClass.innerText = currentPoster.quote
   return currentPoster
   }
-console.log(newRandomPoster())
+
+newRandomPoster();
