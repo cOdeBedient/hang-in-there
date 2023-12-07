@@ -3,6 +3,13 @@ var posterImgClass = document.querySelector(".poster-img");
 var posterTitleClass = document.querySelector(".poster-title");
 var posterQuoteClass = document.querySelector(".poster-quote");
 var showRandomButton = document.querySelector(".show-random");
+var mainToFormButton = document.querySelector(".show-form");
+var formToMainButton = document.querySelector(".show-main");
+var mainToSavedButton = document.querySelector(".show-saved")
+var savedToMainButton = document.querySelector(".back-to-main")
+var mainPage = document.querySelector(".main-poster");
+var formPage = document.querySelector(".poster-form");
+var savedPage = document.querySelector(".saved-posters");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -107,7 +114,36 @@ var currentPoster;
 
 
 // event listeners go here 👇
-showRandomButton.addEventListener("click", newRandomPoster)
+showRandomButton.addEventListener("click", newRandomPoster);
+//showFormButton.addEventListener("click", switchFromMainToForm);
+mainToFormButton.addEventListener("click", () => {
+  togglePages(mainPage, formPage)
+})
+formToMainButton.addEventListener("click", () => {
+  togglePages(formPage, mainPage)
+})
+savedToMainButton.addEventListener("click", () => {
+  togglePages(savedPage, mainPage)
+})
+mainToSavedButton.addEventListener("click", () => {
+  togglePages(mainPage, savedPage)
+})
+// function switchFromMainToForm(){
+//   mainPage.classList.add('hidden');
+//   formPage.classList.remove('hidden');
+// }
+
+// function switchFromFormToMain(){
+
+// }
+
+// function switchFromSavedToMain(){
+
+// }
+
+// function switchFromMainToSaved(){
+
+// }
 
 
 // functions and event handlers go here 👇
@@ -136,4 +172,30 @@ function newRandomPoster () {
   return currentPoster
   }
 
+  // mainPage
+  // formPage
+
+  //hide page 1 and unhide page 2
+function togglePages(page1, page2){
+  page1.classList.toggle('hidden');
+  page2.classList.toggle('hidden');
+}
+
+// togglePages(mainPage, formPage);
+
+
+
+
+  /* When a user clicks the “Make Your Own Poster” button, 
+  we should see the form, and the main poster should be hidden
+  */
+
+// Define or find the element that we are looking for. DONE
+// Create a function for switching views.
+// That function should allow mainPage to disappear
+// and the hidden element (form page) to appear.
+// Create a listener that invokes the function when the "Make Your Own Poster" button is clicked.
+
+
+// Does it when the page loads
 newRandomPoster();
