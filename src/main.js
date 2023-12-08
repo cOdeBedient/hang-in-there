@@ -8,6 +8,7 @@ var formToMainButton = document.querySelector(".show-main");
 var mainToSavedButton = document.querySelector(".show-saved")
 var savedToMainButton = document.querySelector(".back-to-main")
 var showMyPosterButton = document.querySelector(".make-poster")
+var savePosterButton = document.querySelector(".save-poster")
 var mainPage = document.querySelector(".main-poster");
 var formPage = document.querySelector(".poster-form");
 var savedPage = document.querySelector(".saved-posters");
@@ -213,7 +214,20 @@ function displayCustomPoster(event) {
     quotes.push(currentPoster.quote)
 }
 
-//console.log()
+// When "Save this poster" is clicked, current poster 
+// (an object) added to savedPoster array.
+// If clicked more than once, only one poster added.
+// When "show saved posters" clicked, show saved posters view
+// savedPoster array displayed in saved posters grid section.
+// querySelector variables:
+//    "Save this poster" button
+//    "Show saved posters" button 
+//    "saved-posters-grid"?? (MIGHT BE SOME GOOGLING)
+// Write function that adds current poster to the savedPoster array.
+
+function savePoster() {
+  
+}
 
 
 
