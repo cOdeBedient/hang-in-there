@@ -208,6 +208,13 @@ function displayCustomPoster(event) {
     posterTitleClass.innerText = currentPoster.title
     posterQuoteClass.innerText = currentPoster.quote
     event.preventDefault()
+    images.push(currentPoster.imageURL)
+    titles.push(currentPoster.title)
+    quotes.push(currentPoster.quote)
 }
+
+//console.log()
+
+
 
  newRandomPoster();
