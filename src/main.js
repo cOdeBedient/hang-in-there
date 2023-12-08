@@ -7,9 +7,14 @@ var mainToFormButton = document.querySelector(".show-form");
 var formToMainButton = document.querySelector(".show-main");
 var mainToSavedButton = document.querySelector(".show-saved")
 var savedToMainButton = document.querySelector(".back-to-main")
+var showMyPosterButton = document.querySelector(".make-poster")
 var mainPage = document.querySelector(".main-poster");
 var formPage = document.querySelector(".poster-form");
 var savedPage = document.querySelector(".saved-posters");
+var urlField = document.querySelector("#poster-image-url")
+var titleField = document.querySelector("#poster-title")
+var quoteField = document.querySelector("#poster-quote")
+
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -128,6 +133,7 @@ savedToMainButton.addEventListener("click", () => {
 mainToSavedButton.addEventListener("click", () => {
   togglePages(mainPage, savedPage)
 })
+showMyPosterButton.addEventListener("click", displayCustomPoster)
 // function switchFromMainToForm(){
 //   mainPage.classList.add('hidden');
 //   formPage.classList.remove('hidden');
@@ -172,6 +178,8 @@ function newRandomPoster () {
   return currentPoster
   }
 
+  
+
   // mainPage
   // formPage
 
@@ -181,21 +189,25 @@ function togglePages(page1, page2){
   page2.classList.toggle('hidden');
 }
 
-// togglePages(mainPage, formPage);
 
+/* We need to write a function that will use the user entered data to 
+create a new poster that is displayed when the button is clicked.
+1. we need to get/define vars there will be 4
+    -show my poster button
+    -img url box
+    -title box
+    -quote box
+2. write a function that creates and displays a new poster using our variables
+3. the function should also save the new var into a data array 
+*/
+function displayCustomPoster(event) {
+    var customPoster = createPoster(urlField.value, titleField.value, quoteField.value)
+    currentPoster = customPoster
+    togglePages(formPage, mainPage)
+    posterImgClass.src = currentPoster.imageURL
+    posterTitleClass.innerText = currentPoster.title
+    posterQuoteClass.innerText = currentPoster.quote
+    event.preventDefault()
+}
 
-
-
-  /* When a user clicks the “Make Your Own Poster” button, 
-  we should see the form, and the main poster should be hidden
-  */
-
-// Define or find the element that we are looking for. DONE
-// Create a function for switching views.
-// That function should allow mainPage to disappear
-// and the hidden element (form page) to appear.
-// Create a listener that invokes the function when the "Make Your Own Poster" button is clicked.
-
-
-// Does it when the page loads
-newRandomPoster();
+ newRandomPoster();
