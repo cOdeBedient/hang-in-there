@@ -15,6 +15,7 @@ var savedPage = document.querySelector(".saved-posters");
 var urlField = document.querySelector("#poster-image-url")
 var titleField = document.querySelector("#poster-title")
 var quoteField = document.querySelector("#poster-quote")
+var posterGrid = document.querySelector(".saved-posters-grid")
 
 
 // we've provided you with some data to work with 👇
@@ -118,7 +119,6 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-
 // event listeners go here 👇
 showRandomButton.addEventListener("click", newRandomPoster);
 //showFormButton.addEventListener("click", switchFromMainToForm);
@@ -135,6 +135,11 @@ mainToSavedButton.addEventListener("click", () => {
   togglePages(mainPage, savedPage)
 })
 showMyPosterButton.addEventListener("click", displayCustomPoster)
+
+savePosterButton.addEventListener("click", savePoster)
+
+
+
 // function switchFromMainToForm(){
 //   mainPage.classList.add('hidden');
 //   formPage.classList.remove('hidden');
@@ -179,11 +184,6 @@ function newRandomPoster () {
   return currentPoster
   }
 
-  
-
-  // mainPage
-  // formPage
-
   //hide page 1 and unhide page 2
 function togglePages(page1, page2){
   page1.classList.toggle('hidden');
@@ -201,18 +201,22 @@ create a new poster that is displayed when the button is clicked.
 2. write a function that creates and displays a new poster using our variables
 3. the function should also save the new var into a data array 
 */
+
+
 function displayCustomPoster(event) {
-    var customPoster = createPoster(urlField.value, titleField.value, quoteField.value)
-    currentPoster = customPoster
-    togglePages(formPage, mainPage)
-    posterImgClass.src = currentPoster.imageURL
-    posterTitleClass.innerText = currentPoster.title
-    posterQuoteClass.innerText = currentPoster.quote
-    event.preventDefault()
-    images.push(currentPoster.imageURL)
-    titles.push(currentPoster.title)
-    quotes.push(currentPoster.quote)
-}
+      var customPoster = createPoster(urlField.value, titleField.value, quoteField.value)
+      currentPoster = customPoster
+      togglePages(formPage, mainPage)
+      posterImgClass.src = currentPoster.imageURL
+      posterTitleClass.innerText = currentPoster.title
+      posterQuoteClass.innerText = currentPoster.quote
+      event.preventDefault()
+      images.push(currentPoster.imageURL)
+      titles.push(currentPoster.title)
+      quotes.push(currentPoster.quote)
+  }
+
+
 
 // When "Save this poster" is clicked, current poster 
 // (an object) added to savedPoster array.
@@ -224,11 +228,28 @@ function displayCustomPoster(event) {
 //    "Show saved posters" button 
 //    "saved-posters-grid"?? (MIGHT BE SOME GOOGLING)
 // Write function that adds current poster to the savedPoster array.
+// Will require savedPosters.push
+// Will require for loop and
+// if statement to check to see if a poster is already there.
 
 function savePoster() {
-  
+  if (!savedPosters.includes(currentPoster)){
+    savedPosters.push(currentPoster)
+    posterGrid.insertAdjacentHTML('afterbegin', 
+    `<div class="mini-poster">
+      <img src="${currentPoster.imageURL}" alt="motivational poster">
+      <h2>${currentPoster.title}</h2>
+      <h4>${currentPoster.quote}<h4>
+    </div>`)
+  }
 }
 
 
 
  newRandomPoster();
+
+
+
+
+//  <img src="./assets/bees.jpg" class="mini-poster img" alt="Image 1">
+
