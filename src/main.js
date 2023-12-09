@@ -16,7 +16,7 @@ var urlField = document.querySelector("#poster-image-url")
 var titleField = document.querySelector("#poster-title")
 var quoteField = document.querySelector("#poster-quote")
 var posterGrid = document.querySelector(".saved-posters-grid")
-
+// var miniPosterClass = document.querySelectorAll(".mini-poster")
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -138,11 +138,11 @@ showMyPosterButton.addEventListener("click", displayCustomPoster)
 
 savePosterButton.addEventListener("click", savePoster)
 
-
+posterGrid.addEventListener("dblclick", deleteGridElement)
 
 // function switchFromMainToForm(){
 //   mainPage.classList.add('hidden');
-//   formPage.classList.remove('hidden');
+  // formPage.classList.remove('hidden');
 // }
 
 // function switchFromFormToMain(){
@@ -235,16 +235,25 @@ function displayCustomPoster(event) {
 function savePoster() {
   if (!savedPosters.includes(currentPoster)){
     savedPosters.push(currentPoster)
+    currentPoster.id.addEventListener("dblclick", deleteGridElement)
     posterGrid.insertAdjacentHTML('afterbegin', 
     `<div class="mini-poster">
-      <img src="${currentPoster.imageURL}" alt="motivational poster">
+      <img id="${currentPoster.id}" src="${currentPoster.imageURL}" alt="motivational poster">
       <h2>${currentPoster.title}</h2>
       <h4>${currentPoster.quote}<h4>
     </div>`)
   }
 }
 
-
+function deleteGridElement() {
+  // var miniPosterClassTemp = document.querySelector(".mini-poster")
+  // for (i = 0; i < savedPosters.length; i++){
+  //   if (miniPosterClassTemp.id === savedPosters[i].id){
+      var toDelete = document.querySelector(`"#${savedPosters[i].id}"`)
+      toDelete.parentNode.removeChild(toDelete)
+    }
+//   }
+// }
 
  newRandomPoster();
 
