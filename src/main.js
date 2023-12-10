@@ -138,7 +138,18 @@ showMyPosterButton.addEventListener("click", displayCustomPoster)
 
 savePosterButton.addEventListener("click", savePoster)
 
-posterGrid.addEventListener("dblclick", deleteGridElement)
+posterGrid.addEventListener("dblclick", function (event){
+  var tempID = event.Target.getAttribute("id")
+  var element = document.getElementById(tempID);
+  element.remove();
+  // var element = document.getElementById(tempID);
+  // document.getElementById(tempID).remove()
+  // element.parentNode.removeChild(element);
+  // event.target.remove(tempID)
+  // var toDelete = document.querySelector(`"${tempID}"`)
+  // tempID.parentNode.removeChild(tempID)
+  // event.target.remove()
+})
 
 // function switchFromMainToForm(){
 //   mainPage.classList.add('hidden');
@@ -202,7 +213,6 @@ create a new poster that is displayed when the button is clicked.
 3. the function should also save the new var into a data array 
 */
 
-
 function displayCustomPoster(event) {
       var customPoster = createPoster(urlField.value, titleField.value, quoteField.value)
       currentPoster = customPoster
@@ -215,7 +225,6 @@ function displayCustomPoster(event) {
       titles.push(currentPoster.title)
       quotes.push(currentPoster.quote)
   }
-
 
 
 // When "Save this poster" is clicked, current poster 
@@ -235,29 +244,31 @@ function displayCustomPoster(event) {
 function savePoster() {
   if (!savedPosters.includes(currentPoster)){
     savedPosters.push(currentPoster)
-    currentPoster.id.addEventListener("dblclick", deleteGridElement)
     posterGrid.insertAdjacentHTML('afterbegin', 
-    `<div class="mini-poster">
-      <img id="${currentPoster.id}" src="${currentPoster.imageURL}" alt="motivational poster">
+    `<div class="mini-poster" id="${currentPoster.id}">
+      <img src="${currentPoster.imageURL}" alt="motivational poster">
       <h2>${currentPoster.title}</h2>
       <h4>${currentPoster.quote}<h4>
     </div>`)
+    // var currentID = document.querySelector(`"#${currentPoster.id}"`)
+    // currentID.addEventListener("dblclick", function(){
+    //   deleteGridElement(currentPoster.id)
+    // })
   }
 }
 
-function deleteGridElement() {
+// function deleteGridElement(event) {
   // var miniPosterClassTemp = document.querySelector(".mini-poster")
   // for (i = 0; i < savedPosters.length; i++){
-  //   if (miniPosterClassTemp.id === savedPosters[i].id){
-      var toDelete = document.querySelector(`"#${savedPosters[i].id}"`)
-      toDelete.parentNode.removeChild(toDelete)
-    }
-//   }
-// }
+  //   if (event.target.id === savedPosters[i].id){
+  //     
+      // var toDelete = document.querySelector(`"#${event.target.id}"`)
+      // toDelete.remove
+      // var toDelete = document.querySelector(`"#${event.target.id}"`)
+      // toDelete.parentNode.removeChild(toDelete)
+    // }
 
  newRandomPoster();
-
-
 
 
 //  <img src="./assets/bees.jpg" class="mini-poster img" alt="Image 1">
