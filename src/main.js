@@ -131,17 +131,31 @@ formToMainButton.addEventListener("click", () => {
 savedToMainButton.addEventListener("click", () => {
   togglePages(savedPage, mainPage)
 })
-mainToSavedButton.addEventListener("click", () => {
-  togglePages(mainPage, savedPage)
-})
+mainToSavedButton.addEventListener("click", displayGrid)
+
 showMyPosterButton.addEventListener("click", displayCustomPoster)
 
 savePosterButton.addEventListener("click", savePoster)
 
 posterGrid.addEventListener("dblclick", function (event){
-  var tempID = event.Target.getAttribute("id")
-  var element = document.getElementById(tempID);
-  element.remove();
+  var divObj = event.target.closest("div")
+  var tempID = divObj.id
+  console.log(tempID)
+  removeElement(tempID)
+})
+  // var element = document.getElementById(`${tempID}`)
+  
+  function removeElement(tempID){
+  for (var i = 0; i < savedPosters.length; i++){
+    if (savedPosters[i] === tempID) {
+      console.log('This worked')
+      savedPosters.splice(i, 1)
+   }
+   displayGrid()
+  }
+}
+  
+  
   // var element = document.getElementById(tempID);
   // document.getElementById(tempID).remove()
   // element.parentNode.removeChild(element);
@@ -149,7 +163,7 @@ posterGrid.addEventListener("dblclick", function (event){
   // var toDelete = document.querySelector(`"${tempID}"`)
   // tempID.parentNode.removeChild(tempID)
   // event.target.remove()
-})
+// })
 
 // function switchFromMainToForm(){
 //   mainPage.classList.add('hidden');
@@ -244,18 +258,27 @@ function displayCustomPoster(event) {
 function savePoster() {
   if (!savedPosters.includes(currentPoster)){
     savedPosters.push(currentPoster)
-    posterGrid.insertAdjacentHTML('afterbegin', 
-    `<div class="mini-poster" id="${currentPoster.id}">
-      <img src="${currentPoster.imageURL}" alt="motivational poster">
-      <h2>${currentPoster.title}</h2>
-      <h4>${currentPoster.quote}<h4>
-    </div>`)
+  }
+}
+
+  function displayGrid(){
+    togglePages(mainPage, savedPage)
+    posterGrid.innerHTML = ''
+    for (var i = 0; i < savedPosters.length; i++){
+      var posterToAdd = savedPosters[i];
+      posterGrid.insertAdjacentHTML('afterbegin', 
+      `<div class="mini-poster" id="${posterToAdd.id}">
+        <img src="${posterToAdd.imageURL}" alt="motivational poster">
+        <h2>${posterToAdd.title}</h2>
+        <h4>${posterToAdd.quote}<h4>
+      </div>`)
+    }
     // var currentID = document.querySelector(`"#${currentPoster.id}"`)
     // currentID.addEventListener("dblclick", function(){
     //   deleteGridElement(currentPoster.id)
     // })
-  }
-}
+ }
+
 
 // function deleteGridElement(event) {
   // var miniPosterClassTemp = document.querySelector(".mini-poster")
