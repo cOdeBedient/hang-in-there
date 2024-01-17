@@ -6,7 +6,7 @@
 
 ### Installation Instructions:
 [//]: <> (What steps does a person have to take to get your app cloned down and running?)  
-***Users have to fork and clone from a gitHub link, open in a text editor to view code, and run 'open index.html' to view the site in the browser.***
+***Users have to fork and clone from a gitHub link, open in a text editor to view code, and run 'open index.html' to view the site in the browser. Also, deployed page available *** [here.]("https://cOdeBedient.github.io/hang-in-there/")
 
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)  
